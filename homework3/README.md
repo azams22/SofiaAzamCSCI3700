@@ -6,6 +6,8 @@ Sofia Azam
 
 ## Quick Start
 ### Local Test Setup
+Make sure that you have changed your directory to this 'homework3' folder before doing all of the following steps.
+
 First, we need to install a Python 3 virtual environment with:
 ```
 sudo apt-get install python3-venv
