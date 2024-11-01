@@ -44,16 +44,16 @@ def unique():
     cursor, connection = util.connect_to_db(username,password,host,port,database)
     
     # execute SQL commands
-    record = util.run_and_fetch_sql(cursor, "select a, fruit_a, b, fruit_b from basket_a full join basket_b on fruit_a=fruit_b where a is NULL or b is NULL;")
+    record = util.run_and_fetch_sql(cursor, "select fruit_a, fruit_b from basket_a full join basket_b on fruit_a=fruit_b where a is NULL or b is NULL;")
 
     # Display the error if there was one, otherwise just display the table
     if record[0] == "Error: ":
         logMessage = record[0] + str(record[1])
     else:
         # this will return all column names of the select result table
-        col_names = [desc[0] for desc in cursor.description]
-        log = record[:5]
-        logMessage = 'Unique fruits in each basket, where fruit_a is from basket_a and fruit_b is from basket_b'
+        col_names = ['Unique Fruits in basket_a', 'Unique Fruits in basket_b']
+        log = record
+        logMessage = 'Unique fruits in each basket'
 
     # disconnect from database
     util.disconnect_from_db(connection,cursor)
@@ -67,4 +67,3 @@ if __name__ == '__main__':
     # your local machine ip
     ip = '127.0.0.1'
     app.run(host=ip)
-
